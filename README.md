@@ -75,6 +75,8 @@
 
    Sans clé, le chatbot affichera un message indiquant que la clé est manquante.
 
+   **Sur Vercel** : ne committez jamais `.env` (risque de vol de clé). Ajoutez `VITE_MISTRAL_API_KEY` dans **Project → Settings → Environment Variables** sur le dashboard Vercel pour que le chatbot fonctionne en production.
+
 4. **Lancer le serveur de développement** :
 
    ```bash
