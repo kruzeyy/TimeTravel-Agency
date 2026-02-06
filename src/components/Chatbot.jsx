@@ -59,7 +59,12 @@ export default function Chatbot() {
     if (!trimmed || loading) return
 
     if (!apiKey) {
-      setError('Clé API Mistral manquante. Ajoutez VITE_MISTRAL_API_KEY dans un fichier .env.')
+      const isLocal = import.meta.env.DEV
+      setError(
+        isLocal
+          ? 'Clé API Mistral manquante. Créez un fichier .env à la racine avec : VITE_MISTRAL_API_KEY=votre_cle Puis redémarrez (npm run dev).'
+          : 'Clé API manquante sur le serveur. Sur Vercel : Settings → Environment Variables → ajoutez VITE_MISTRAL_API_KEY puis redéployez.'
+      )
       return
     }
 
