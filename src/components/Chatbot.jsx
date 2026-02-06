@@ -19,6 +19,15 @@ Réponds toujours en français, de façon concise et engageante. Reste dans le c
 
 const btnTransition = { duration: 0.7, ease: 'easeOut' }
 
+/** Affiche le texte en rendant **gras** sans afficher les astérisques. */
+function renderMessageContent(text) {
+  if (typeof text !== 'string') return text
+  const parts = text.split('**')
+  return parts.map((part, i) =>
+    i % 2 === 1 ? <strong key={i}>{part}</strong> : part
+  )
+}
+
 export default function Chatbot() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState([
@@ -171,7 +180,7 @@ export default function Chatbot() {
                       : 'bg-dark-600 text-gray-200'
                   }`}
                 >
-                  {msg.content}
+                  {renderMessageContent(msg.content)}
                 </div>
               </div>
             ))}
